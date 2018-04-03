@@ -1,4 +1,4 @@
-package com.ru.user.controller;
+package com.ru.baseinfo.controller;
 
 import com.ru.core.controller.BaseController;
 import com.ru.core.vo.ResultVo;
@@ -118,6 +118,13 @@ public class CenterController extends BaseController{
         }
         ResultVo vo=new ResultVo();
         return  vo;
+    }
+
+    /**
+     * 注册页面
+     */
+    @RequestMapping("register")
+    public void register(){
     }
 
 }

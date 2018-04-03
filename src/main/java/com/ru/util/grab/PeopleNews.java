@@ -1,17 +1,5 @@
 package com.ru.util.grab;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import com.util.DateTimeUtil;
-import com.website.baseserver.entity.News;
-
 /**
  * 社会分类
  * @author dream
@@ -40,7 +28,7 @@ public class PeopleNews {
 	 * @return
 	 * @throws Exception
 	 */
-	public static List<News> getHtmlContent(String url) throws Exception{
+	/*public static List<News> getHtmlContent(String url) throws Exception{
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd日hh:mm");
 		List<News> list=new ArrayList<News>();
 		//获取内容
@@ -90,7 +78,7 @@ public class PeopleNews {
 	       
 	    }
 		return list;
-	} 
+	} */
 	
 	public static void main(String [] args) throws Exception{
 		

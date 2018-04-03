@@ -64,8 +64,8 @@
    <mvc:interceptors>
         <mvc:interceptor>
          <!--   <mvc:mapping path="/**"/>-->
-            <mvc:mapping path="/blog/**"/>
-        <!--    <mvc:mapping path="/admin/menu/**"/>-->
+           <!-- <mvc:mapping path="/blog/**"/>-->
+            <mvc:mapping path="/admin/**"/>
             <bean class="com.ru.filter.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

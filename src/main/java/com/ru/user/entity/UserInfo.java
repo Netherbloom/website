@@ -42,7 +42,7 @@ public class UserInfo {
      */
     private Integer status;
     /**
-     * 类型
+     * 类型(1超级管理员，2管理员；3普通用户)
      */
     private Integer type;
     /**

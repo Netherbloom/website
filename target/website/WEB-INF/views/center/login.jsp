@@ -13,8 +13,7 @@
     <link rel="stylesheet" href="${path }/statics/admin/css/admin.css">
     <script  type="text/javascript" src="${path }/statics/admin/js/jquery.js"></script>
     <script  type="text/javascript" src="${path }/statics/admin/js/pintuer.js"></script>  
-	<script type="text/javascript" src="${path }/statics/js/jquery/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="${path }/statics/js/jquery/jquery.form.js"></script>
+	<script type="text/javascript" src="${path }/statics/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${path }/statics/layer/layer.js"></script>
 </head>
 <body>

@@ -29,9 +29,9 @@ public class CommArray {
 	//状态
 	public String[] arr_YesNo = {"否", "是" };
 	
-	
+
 	/**
-	 * 服务台取书时间 
+	 * 服务台取书时间
 	 * 单位：分钟 默认30分钟
 	 */
 	public int fetchTime=30;
@@ -78,32 +78,6 @@ public class CommArray {
 		this.arr_YesNo = arr_YesNo;
 	}
 
-
-	
-	/**
-	 * 终端类型
-	 *
-	 */
-	public static enum DeviceType {
-		Android("Android"),
-		windows_pc("windows_pc"),
-		iphone("iPhone OS"),
-		ios("iOS"),
-		H5("H5"),
-		wechat("wechat");
-
-		public final String name;
-		DeviceType(String name) {
-			this.name = name;
-		}
-		
-		public String getValue() {
-			return super.toString();
-		}
-		public String getName() {
-			return this.name;
-		}
-	}
 	
 	/**
 	 * 错误状态
@@ -133,22 +107,16 @@ public class CommArray {
 		}
 	}
 
-	
-	/**
-	 * 系统配置参数
-	 * @author debbie
-	 *
-	 */
-	public static enum SystemParams{
-		_浏览("free"),
-		_下载("dowload"),
-		_试读("sample"),
-		_评论("comment"),
-		_收藏("favorite"),
-		_购买("buy");
 
+	/**
+	 * 注册来源
+	 */
+	public static enum RegisterSource{
+		_后台添加("admin"),
+		_手机注册("phone"),
+		_邮箱注册("email");
 		public final String value;
-		SystemParams(String value) {
+		RegisterSource(String value) {
 			this.value = value;
 		}
 		
@@ -158,9 +126,29 @@ public class CommArray {
 		public String getValue() {
 			return this.value;
 		}
-	}	
-	
-	
+	}
+
+	/**
+	 * 用户类型
+	 */
+	public static enum UserType {
+		_超级管理员(1),
+		_管理员(2),
+		_普通用户(3);
+
+		public final int name;
+		UserType(int name) {
+			this.name = name;
+		}
+
+		public int getValue() {
+			return this.name;
+		}
+		public String getName() {
+			return super.toString().replace("_", "").toString();
+		}
+	}
+
 	/**
 	 * 用户日志
 	 * @author debbie
@@ -168,8 +156,7 @@ public class CommArray {
 	 */
 	public static enum UserLogType{
 		_登录("login"),
-		_登出("layout"),
-		_购买("buy");
+		_登出("layout");
 
 		public final String value;
 		UserLogType(String value) {
@@ -205,26 +192,6 @@ public class CommArray {
 	}
 
 
-	/**
-	 * 优惠券状态
-	 */
-	public static enum DiscountCodeStatus {
-		_未使用(0),
-		_已使用(1),
-		_已过期(2);
-		
-		public final int name;
-		DiscountCodeStatus(int name) {
-			this.name = name;
-		}
-		
-		public int getValue() {
-			return this.name;
-		}
-		public String getName() {
-			return super.toString().replace("_", "").toString();
-		}
-	}
 	
 	
 }
