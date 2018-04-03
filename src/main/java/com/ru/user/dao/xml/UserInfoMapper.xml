@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ru.user.dao.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ru.user.entity.UserInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="creaTime" jdbcType="TIMESTAMP" property="creatime" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="qqopenid" jdbcType="VARCHAR" property="qqopenid" />
+    <result column="register_source" jdbcType="VARCHAR" property="registerSource" />
+    <result column="wxopenid" jdbcType="VARCHAR" property="wxopenid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, creaTime, email, nickname, password, phone, photo, signature, status, type, username, 
+    qqopenid, register_source, wxopenid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from userinfo
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ru.user.entity.UserInfo">
+    insert into userinfo (id, creaTime, email, 
+      nickname, password, phone, 
+      photo, signature, status, 
+      type, username, qqopenid, 
+      register_source, wxopenid)
+    values (#{id,jdbcType=VARCHAR}, #{creatime,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{qqopenid,jdbcType=VARCHAR}, 
+      #{registerSource,jdbcType=VARCHAR}, #{wxopenid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ru.user.entity.UserInfo">
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="creatime != null">
+        creaTime,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="signature != null">
+        signature,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="qqopenid != null">
+        qqopenid,
+      </if>
+      <if test="registerSource != null">
+        register_source,
+      </if>
+      <if test="wxopenid != null">
+        wxopenid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="creatime != null">
+        #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="qqopenid != null">
+        #{qqopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="registerSource != null">
+        #{registerSource,jdbcType=VARCHAR},
+      </if>
+      <if test="wxopenid != null">
+        #{wxopenid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ru.user.entity.UserInfo">
+    update userinfo
+    <set>
+      <if test="creatime != null">
+        creaTime = #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="qqopenid != null">
+        qqopenid = #{qqopenid,jdbcType=VARCHAR},
+      </if>
+      <if test="registerSource != null">
+        register_source = #{registerSource,jdbcType=VARCHAR},
+      </if>
+      <if test="wxopenid != null">
+        wxopenid = #{wxopenid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ru.user.entity.UserInfo">
+    update userinfo
+    set creaTime = #{creatime,jdbcType=TIMESTAMP},
+      email = #{email,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      qqopenid = #{qqopenid,jdbcType=VARCHAR},
+      register_source = #{registerSource,jdbcType=VARCHAR},
+      wxopenid = #{wxopenid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+<!--根据用户名查询用户-->
+  <select id="selectUserInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select *   from userinfo    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 分页查询 -->
+  <select id="selectByPageQuery" resultMap="BaseResultMap" parameterType="com.ru.core.pages.PageQuery">
+    select *  from userinfo
+    <where>
+      <if test="queryConditions != null and !queryConditions.isEmpty()">
+        <foreach collection="queryConditions" item="item">
+          <choose>
+            <when test="item.operation.value == 'in'">
+              AND ${item.queryField} IN
+              <foreach item="queryItem" collection="item.queryValue"
+                       open="(" separator="," close=")">
+                #{queryItem}
+              </foreach>
+            </when>
+            <otherwise>
+              AND ${item.queryField} ${item.operation.value}
+              #{item.queryValue}
+            </otherwise>
+          </choose>
+        </foreach>
+      </if>
+    </where>
+    <if test="querySorts != null and !querySorts.isEmpty()">
+      <foreach collection="querySorts" item="item" open="order by " separator="," close=" ">
+        ${item.sortField} ${item.recordOrder.value}
+      </foreach>
+    </if>
+    <if test="limit > 0">
+      LIMIT #{limit}
+    </if>
+    <if test="page > 0">
+      OFFSET #{offset}
+    </if>
+  </select>
+
+  <!-- 分页查询总数 -->
+  <select id="selectCountByCondition" resultType="java.lang.Long"	parameterType="com.ru.core.pages.PageQuery">
+    SELECT count(*)  from userinfo
+    <where>
+      <if test="queryConditions != null and !queryConditions.isEmpty()">
+        <foreach collection="queryConditions" item="item">
+          <choose>
+            <when test="item.operation.value == 'in'">
+              AND ${item.queryField} IN
+              <foreach item="queryItem" collection="item.queryValue"
+                       open="(" separator="," close=")">
+                #{queryItem}
+              </foreach>
+            </when>
+            <otherwise>
+              AND ${item.queryField} ${item.operation.value}
+              #{item.queryValue}
+            </otherwise>
+          </choose>
+        </foreach>
+      </if>
+    </where>
+    <if test="querySorts != null and !querySorts.isEmpty()">
+      <foreach collection="querySorts" item="item" open="order by " separator="," close=" ">
+        ${item.sortField} ${item.recordOrder.value}
+      </foreach>
+    </if>
+  </select>
+</mapper>

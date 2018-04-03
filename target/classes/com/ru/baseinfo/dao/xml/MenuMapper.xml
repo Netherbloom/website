@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ru.baseinfo.dao.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.ru.baseinfo.entity.Menu">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="ico" jdbcType="VARCHAR" property="ico" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="parentId" jdbcType="VARCHAR" property="parentid" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, ico, level, name, parentId, sort, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from menu
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ru.baseinfo.entity.Menu">
+    insert into menu (id, code, ico, 
+      level, name, parentId, 
+      sort, url)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{ico,jdbcType=VARCHAR}, 
+      #{level,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ru.baseinfo.entity.Menu">
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="ico != null">
+        ico,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="parentid != null">
+        parentId,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="ico != null">
+        #{ico,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ru.baseinfo.entity.Menu">
+    update menu
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="ico != null">
+        ico = #{ico,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        parentId = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ru.baseinfo.entity.Menu">
+    update menu
+    set code = #{code,jdbcType=VARCHAR},
+      ico = #{ico,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!--根据父级及等级获取菜单-->
+  <select id="getmenu"  resultMap="BaseResultMap">
+    select * from menu
+    where   level = #{level,jdbcType=INTEGER}
+    <if test="parentid != null " >
+      <if test="parentid != '' " >
+        and  parentId = #{parentid,jdbcType=VARCHAR}
+      </if>
+  </if>
+    order by sort asc
+  </select>
+
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from menu
+     order by level,sort
+  </select>
+</mapper>
