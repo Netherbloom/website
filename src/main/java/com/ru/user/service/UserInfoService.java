@@ -37,4 +37,14 @@ public class UserInfoService extends BaseService<UserInfo>{
         long total = this.UserInfoMapper.selectCountByCondition(PageQuery);
         return new DataguidPageResult<UserInfo>(total, null, rows);
     }
+
+    /**
+     * 根据手机号或邮箱查询用户
+     * @param phone
+     * @param email
+     * @return
+     */
+    public UserInfo getUserByPhoneOrEmail(String phone,String email){
+        return UserInfoMapper.selectUserByPhoneOrEmail(phone,email);
+    }
 }

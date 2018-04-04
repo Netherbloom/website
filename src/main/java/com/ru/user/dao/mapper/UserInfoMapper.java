@@ -3,6 +3,7 @@ package com.ru.user.dao.mapper;
 import com.ru.core.dao.BaseMapper;
 import com.ru.core.pages.PageQuery;
 import com.ru.user.entity.UserInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,6 +17,14 @@ public interface UserInfoMapper extends BaseMapper<UserInfo>{
      * @return
      */
     public UserInfo selectUserInfo(String username);
+
+    /**
+     * 根据手机号或邮箱查询用户
+     * @param phone
+     * @param email
+     * @return
+     */
+    public UserInfo selectUserByPhoneOrEmail(@Param("phone")String phone,@Param("email")String email);
 
     /**
      * 查询符合条件的记录总数

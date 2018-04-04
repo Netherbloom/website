@@ -45,7 +45,7 @@
         <div class="layui-form-item">
           <label class="layui-form-label">昵称:</label>
           <div class="layui-input-block">
-            <input type="text" name="username" lay-verify="title" placeholder="请输入" autocomplete="off" class="layui-input" style="width: 300px;">
+            <input type="text" name="nickname" lay-verify="title" placeholder="请输入" autocomplete="off" class="layui-input" style="width: 300px;">
           </div>
         </div>
 
@@ -92,7 +92,7 @@
           <div class="layui-form-item">
             <label class="layui-form-label">昵称:</label>
             <div class="layui-input-block">
-              <input type="text" name="username" lay-verify="title" placeholder="请输入" autocomplete="off" class="layui-input" style="width: 300px;">
+              <input type="text" name="nickname" lay-verify="title" placeholder="请输入" autocomplete="off" class="layui-input" style="width: 300px;">
             </div>
           </div>
 
@@ -123,14 +123,16 @@
     form.render();
     //监听提交-手机号注册
     form.on('submit(from1)', function(data){
-      layer.msg(JSON.stringify(data.field));
-      return false;
+      var flag=false;
+      submit("phonefrom",flag);
+      return flag;
     });
 
     //监听提交-邮箱注册
     form.on('submit(from2)', function(data){
-      layer.msg(JSON.stringify(data.field));
-      return false;
+      var flag=false;
+      submit("emailfrom",flag);
+      return flag;
     });
 
   });
@@ -146,6 +148,31 @@
     };
 
   });
+
+  <!--表单提交-->
+  function  submit(data,flag){
+    var id="#"+data;
+    $.ajax({
+      type: "POST",
+      url: "${path}/front/user/ajax_register",
+      cache: false,
+      async: true,//不锁住浏览器
+      data: $(id).serialize(),
+      success: function(data){
+        if(data.code=="200"){
+          layer.msg(data.msg);
+          window.location.href="${path}/center/login";
+          flag=true;
+        }else{
+          layer.msg(data.msg);
+          flag=false;
+        }
+      },
+      error:function(XMLHttpRequest, textStatus){
+      }
+    });
+    return false;
+  }
 
  <!--验证账号-->
   function checkAccount(data){

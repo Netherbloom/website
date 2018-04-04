@@ -30,12 +30,6 @@
         <input type="hidden" name="registerSource" value="phone">
         <input type="hidden" name="status" value="1">
         <div class="layui-form-item">
-          <label class="layui-form-label"><span style="color: red">*</span>用户账号:</label>
-          <div class="layui-input-block">
-            <input type="text" name="username" lay-verify="required|number" placeholder="请输入数字账号" autocomplete="off" class="layui-input" style="width: 300px;">
-          </div>
-        </div>
-        <div class="layui-form-item">
           <label class="layui-form-label"><span style="color: red">*</span>密码:</label>
           <div class="layui-input-inline">
             <input type="password" name="password" lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
@@ -45,7 +39,7 @@
         <div class="layui-form-item">
           <label class="layui-form-label">昵称:</label>
           <div class="layui-input-block">
-            <input type="text" name="username" lay-verify="title" placeholder="请输入" autocomplete="off" class="layui-input" style="width: 300px;">
+            <input type="text" name="nickname" lay-verify="title" placeholder="请输入" autocomplete="off" class="layui-input" style="width: 300px;">
           </div>
         </div>
 
@@ -77,9 +71,9 @@
           <input type="hidden" name="registerSource" value="email">
           <input type="hidden" name="status" value="0">
           <div class="layui-form-item">
-            <label class="layui-form-label"><span style="color: red">*</span>用户账号:</label>
+            <label class="layui-form-label">昵称:</label>
             <div class="layui-input-block">
-              <input type="text" name="username" lay-verify="required|number" placeholder="请输入数字账号" autocomplete="off" class="layui-input" style="width: 300px;" onblur="checkAccount(this.value)">
+              <input type="text" name="nickname" lay-verify="title" placeholder="请输入" autocomplete="off" class="layui-input" style="width: 300px;">
             </div>
           </div>
           <div class="layui-form-item">
@@ -88,12 +82,6 @@
               <input type="password" name="password" lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
-          </div>
-          <div class="layui-form-item">
-            <label class="layui-form-label">昵称:</label>
-            <div class="layui-input-block">
-              <input type="text" name="username" lay-verify="title" placeholder="请输入" autocomplete="off" class="layui-input" style="width: 300px;">
-            </div>
           </div>
 
           <div class="layui-form-item">

@@ -49,6 +49,11 @@ public class FrontUserController extends BaseController {
         return map;
     }
 
+    /**
+     * 账号注册
+     * @param UserInfo
+     * @return
+     */
     @RequestMapping("ajax_register")
     @ResponseBody
     public Map<String,String> ajax_register(UserInfo UserInfo){
@@ -58,7 +63,21 @@ public class FrontUserController extends BaseController {
             UserInfo.setCreatime(new Date());
             UserInfo.setType(CommArray.UserType._普通用户.getValue());
             if(UserInfo.getRegisterSource().equals(CommArray.RegisterSource._邮箱注册.getValue())){
-
+                UserInfo UserInfo2=UserInfoService.getUserByPhoneOrEmail(UserInfo.getPhone(),null);
+                if(UserInfo2!=null && !StringUtils.isBlank(UserInfo2.getId())){
+                    map.put("code", "202");
+                    map.put("msg", "该邮箱号已绑定");
+                    return  map;
+                }
+                UserInfo.setUsername(UserInfo.getEmail());
+            }else if(UserInfo.getRegisterSource().equals(CommArray.RegisterSource._手机注册.getValue())){
+                UserInfo UserInfo2=UserInfoService.getUserByPhoneOrEmail(UserInfo.getPhone(),null);
+                if(UserInfo2!=null && !StringUtils.isBlank(UserInfo2.getId())){
+                    map.put("code", "202");
+                    map.put("msg", "该手机号已注册");
+                    return  map;
+                }
+                UserInfo.setUsername(UserInfo.getPhone());
             }
             UserInfoService.saveSelective(UserInfo);
             map.put("code", "200");
