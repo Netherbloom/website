@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ru.ebooks.dao.mapper.EbookChapterMapper">
+  <resultMap id="BaseResultMap" type="com.ru.ebooks.entity.EbookChapter">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="chapter" jdbcType="VARCHAR" property="chapter" />
+    <result column="ebookid" jdbcType="VARCHAR" property="ebookid" />
+    <result column="pri" jdbcType="INTEGER" property="pri" />
+    <result column="copyurl" jdbcType="VARCHAR" property="copyurl" />
+    <result column="bookname" jdbcType="VARCHAR" property="bookname" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="issave" jdbcType="INTEGER" property="issave" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ru.ebooks.entity.EbookChapter">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, chapter, ebookid, pri, copyurl, bookname, status, issave
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ebookchapter
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ebookchapter
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ru.ebooks.entity.EbookChapter">
+    insert into ebookchapter (id, chapter, ebookid, 
+      pri, copyurl, bookname, 
+      status, issave, content
+      )
+    values (#{id,jdbcType=VARCHAR}, #{chapter,jdbcType=VARCHAR}, #{ebookid,jdbcType=VARCHAR}, 
+      #{pri,jdbcType=INTEGER}, #{copyurl,jdbcType=VARCHAR}, #{bookname,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{issave,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ru.ebooks.entity.EbookChapter">
+    insert into ebookchapter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="chapter != null">
+        chapter,
+      </if>
+      <if test="ebookid != null">
+        ebookid,
+      </if>
+      <if test="pri != null">
+        pri,
+      </if>
+      <if test="copyurl != null">
+        copyurl,
+      </if>
+      <if test="bookname != null">
+        bookname,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="issave != null">
+        issave,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="chapter != null">
+        #{chapter,jdbcType=VARCHAR},
+      </if>
+      <if test="ebookid != null">
+        #{ebookid,jdbcType=VARCHAR},
+      </if>
+      <if test="pri != null">
+        #{pri,jdbcType=INTEGER},
+      </if>
+      <if test="copyurl != null">
+        #{copyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="bookname != null">
+        #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="issave != null">
+        #{issave,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ru.ebooks.entity.EbookChapter">
+    update ebookchapter
+    <set>
+      <if test="chapter != null">
+        chapter = #{chapter,jdbcType=VARCHAR},
+      </if>
+      <if test="ebookid != null">
+        ebookid = #{ebookid,jdbcType=VARCHAR},
+      </if>
+      <if test="pri != null">
+        pri = #{pri,jdbcType=INTEGER},
+      </if>
+      <if test="copyurl != null">
+        copyurl = #{copyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="bookname != null">
+        bookname = #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="issave != null">
+        issave = #{issave,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ru.ebooks.entity.EbookChapter">
+    update ebookchapter
+    set chapter = #{chapter,jdbcType=VARCHAR},
+      ebookid = #{ebookid,jdbcType=VARCHAR},
+      pri = #{pri,jdbcType=INTEGER},
+      copyurl = #{copyurl,jdbcType=VARCHAR},
+      bookname = #{bookname,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      issave = #{issave,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ru.ebooks.entity.EbookChapter">
+    update ebookchapter
+    set chapter = #{chapter,jdbcType=VARCHAR},
+      ebookid = #{ebookid,jdbcType=VARCHAR},
+      pri = #{pri,jdbcType=INTEGER},
+      copyurl = #{copyurl,jdbcType=VARCHAR},
+      bookname = #{bookname,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      issave = #{issave,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
