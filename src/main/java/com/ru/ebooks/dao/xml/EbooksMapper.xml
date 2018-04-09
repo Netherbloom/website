@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ru.ebooks.dao.mapper.EbooksMapper">
+  <resultMap id="BaseResultMap" type="com.ru.ebooks.entity.Ebooks">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="copyurl" jdbcType="VARCHAR" property="copyurl" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+    <result column="writer" jdbcType="VARCHAR" property="writer" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="isupdate" jdbcType="INTEGER" property="isupdate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ru.ebooks.entity.Ebooks">
+    <result column="intro" jdbcType="LONGVARCHAR" property="intro" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, copyurl, cover, createtime, name, type, updatetime, writer, status, isupdate
+  </sql>
+  <sql id="Blob_Column_List">
+    intro
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ebooks
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ebooks
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ru.ebooks.entity.Ebooks">
+    insert into ebooks (id, copyurl, cover, 
+      createtime, name, type, 
+      updatetime, writer, status, 
+      isupdate, intro)
+    values (#{id,jdbcType=VARCHAR}, #{copyurl,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=VARCHAR}, #{writer,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{isupdate,jdbcType=INTEGER}, #{intro,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ru.ebooks.entity.Ebooks">
+    insert into ebooks
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="copyurl != null">
+        copyurl,
+      </if>
+      <if test="cover != null">
+        cover,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="writer != null">
+        writer,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isupdate != null">
+        isupdate,
+      </if>
+      <if test="intro != null">
+        intro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="copyurl != null">
+        #{copyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="writer != null">
+        #{writer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isupdate != null">
+        #{isupdate,jdbcType=INTEGER},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ru.ebooks.entity.Ebooks">
+    update ebooks
+    <set>
+      <if test="copyurl != null">
+        copyurl = #{copyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="writer != null">
+        writer = #{writer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isupdate != null">
+        isupdate = #{isupdate,jdbcType=INTEGER},
+      </if>
+      <if test="intro != null">
+        intro = #{intro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ru.ebooks.entity.Ebooks">
+    update ebooks
+    set copyurl = #{copyurl,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      writer = #{writer,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      isupdate = #{isupdate,jdbcType=INTEGER},
+      intro = #{intro,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ru.ebooks.entity.Ebooks">
+    update ebooks
+    set copyurl = #{copyurl,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      writer = #{writer,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      isupdate = #{isupdate,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <!-- 分页查询 -->
+  <select id="selectByPageQuery" parameterType="com.ru.core.pages.PageQuery" resultMap="ResultMapWithBLOBs">
+    select *  from ebooks
+    <where>
+      <if test="queryConditions != null and !queryConditions.isEmpty()">
+        <foreach collection="queryConditions" item="item">
+          <choose>
+            <when test="item.operation.value == 'in'">
+              AND ${item.queryField} IN
+              <foreach close=")" collection="item.queryValue" item="queryItem" open="(" separator=",">
+                #{queryItem}
+              </foreach>
+            </when>
+            <otherwise>
+              AND ${item.queryField} ${item.operation.value}
+              #{item.queryValue}
+            </otherwise>
+          </choose>
+        </foreach>
+      </if>
+    </where>
+    <if test="querySorts != null and !querySorts.isEmpty()">
+      <foreach close=" " collection="querySorts" item="item" open="order by " separator=",">
+        ${item.sortField} ${item.recordOrder.value}
+      </foreach>
+    </if>
+    <if test="limit &gt; 0">
+      LIMIT #{limit}
+    </if>
+    <if test="page &gt; 0">
+      OFFSET #{offset}
+    </if>
+  </select>
+
+  <!-- 分页查询总数 -->
+  <select id="selectCountByCondition" parameterType="com.ru.core.pages.PageQuery" resultType="java.lang.Long">
+    SELECT count(*)  from ebooks
+    <where>
+      <if test="queryConditions != null and !queryConditions.isEmpty()">
+        <foreach collection="queryConditions" item="item">
+          <choose>
+            <when test="item.operation.value == 'in'">
+              AND ${item.queryField} IN
+              <foreach close=")" collection="item.queryValue" item="queryItem" open="(" separator=",">
+                #{queryItem}
+              </foreach>
+            </when>
+            <otherwise>
+              AND ${item.queryField} ${item.operation.value}
+              #{item.queryValue}
+            </otherwise>
+          </choose>
+        </foreach>
+      </if>
+    </where>
+    <if test="querySorts != null and !querySorts.isEmpty()">
+      <foreach close=" " collection="querySorts" item="item" open="order by " separator=",">
+        ${item.sortField} ${item.recordOrder.value}
+      </foreach>
+    </if>
+  </select>
+<!--根据实体值查询-->
+  <select id="selectEbookByTrem" parameterType="com.ru.ebooks.entity.Ebooks" resultMap="ResultMapWithBLOBs">
+    select * from ebooks where 1=1
+      <if test="name != null">
+        and   name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        and  type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="writer != null">
+      and  writer = #{writer,jdbcType=VARCHAR},
+      </if>
+    <if test="status != null">
+      and  status = #{status,jdbcType=INTEGER},
+    </if>
+    <if test="isupdate != null">
+      and  isupdate = #{isupdate,jdbcType=INTEGER},
+    </if>
+  </select>
+<!--批量插入-->
+  <insert id="insertBatch">
+    insert into ebooks (id, copyurl, cover,
+    createtime, name, type,
+    updatetime, writer, intro
+    )
+    values
+    <foreach collection="list" item="list" separator=",">
+      (#{id,jdbcType=VARCHAR}, #{copyurl,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR},
+      #{createtime,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+      #{updatetime,jdbcType=VARCHAR}, #{writer,jdbcType=VARCHAR}, #{intro,jdbcType=LONGVARCHAR}
+      )
+    </foreach>
+  </insert>
+
+</mapper>
