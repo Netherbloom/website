@@ -60,4 +60,23 @@ public class EbooksController extends BaseController{
         Map<String,Object> map=new HashMap<String, Object>();
         return  new LayResultVO<List<Ebooks>>(page.getRows(),page.getTotal());
     }
+
+    /**
+     * 同步书籍
+     * @return
+     */
+    @RequestMapping("/syncebooks")
+    @ResponseBody
+    public Map<String,String> syncebooks(){
+        Map<String,String> map=new HashMap<String, String>();
+        try {
+            this.EbooksService.saveEbooks();
+            map.put("code", "200");
+            map.put("msg","正在更新");
+        }catch (Exception e){
+            map.put("code","201");
+            map.put("msg","更新失败："+e.getMessage());
+        }
+        return map;
+    }
 }

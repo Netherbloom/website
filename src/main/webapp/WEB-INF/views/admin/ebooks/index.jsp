@@ -15,11 +15,12 @@
 </head>
 <body>
 
-<div class="demoTable">
+<div class="demoTable" style="margin-left: 5px;margin-top: 5px;margin-bottom: 5px;">
  <div class="layui-inline">
-    <input class="layui-input" name="keywords" id="keywords" autocomplete="off" placeholder="请输入书籍名称">
+  <input class="layui-input" name="keywords" id="keywords" autocomplete="off" placeholder="请输入书籍名称"  />
   </div>
   <button class="layui-btn" data-type="reload" id="serch" >搜索</button>
+  <button class="layui-btn" type="button" onclick="syncebooks()" style="float: right;margin-right: 20px;">同步</button>
 </div>
 <table class="layui-hide" id="ebookresult"></table>
 
@@ -81,6 +82,26 @@
         active[type] ? active[type].call(this) : '';
       });
 
+    });
+  }
+  //更新书籍
+  function syncebooks(){
+    $.ajax({
+      type: "POST",
+      url: "${path}/admin/ebooks/syncebooks",
+      cache: false,
+      async: true,//不锁住浏览器
+      data: {},
+      success: function(data){
+        if(data.code=="200"){
+          layer.msg(data.msg);
+          initDate();
+        }else{
+          layer.msg(data.msg);
+        }
+      },
+      error:function(XMLHttpRequest, textStatus){
+      }
     });
   }
 
