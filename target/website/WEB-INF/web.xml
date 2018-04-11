@@ -8,7 +8,7 @@
     <display-name>website</display-name>
     <!--welcome pages-->
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/views/front/index.jsp</welcome-file>
     </welcome-file-list>
     <!--当系统出现404错误，跳转到页面NoPage.html-->
     <error-page>

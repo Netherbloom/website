@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Administrator on 2018/4/9.
@@ -21,19 +22,19 @@ public class GrabEbook {
     /**
      * 私有化构造方法
      */
-    private GrabEbook(){}
+   // private GrabEbook(){}
 
-    private static  GrabEbook instance=null;
+  //  private static  GrabEbook instance=null;
 
     /**
      *  静态工厂方法
      */
-    public synchronized   static GrabEbook getInstance(){
+/*    public synchronized   static GrabEbook getInstance(){
        if(instance==null){
            instance=new GrabEbook();
        }
         return instance;
-    }
+    }*/
 
     /**
      * 数据网址
@@ -57,6 +58,7 @@ public class GrabEbook {
 			 String []name=e.text().split("/");
 			 String second_url=e.select("a").attr("abs:href");//书籍详情地址
 		     Ebooks ebooks=new Ebooks();
+             ebooks.setId(UUID.randomUUID().toString().replace("-",""));
 		     ebooks.setName(name[0]);//书名
 		     ebooks.setWriter(name[1]);
 		     ebooks.setCopyurl(second_url);//来源网址
@@ -120,5 +122,23 @@ public class GrabEbook {
         chapter.setContent(content);
     }
 
+    public static void main(String[]args) throws IOException {
+        List<Ebooks> list=new ArrayList<Ebooks>();
+        //获取内容
+        Document doc= Jsoup.connect(books_url).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0)").get();
+        Element content = doc.getElementById("main");
+        Elements links = content.getElementsByTag("li");
+        for (Element e:links) {
+            String []name=e.text().split("/");
+            String second_url=e.select("a").attr("abs:href");//书籍详情地址
+            Ebooks ebooks=new Ebooks();
+            ebooks.setName(name[0]);//书名
+            ebooks.setWriter(name[1]);
+            ebooks.setCopyurl(second_url);//来源网址
+            ebooks.setCreatetime(sdf.format(new Date()));
+            list.add(ebooks);
+        }
+
+    }
 
 }
